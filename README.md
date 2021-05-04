@@ -5,6 +5,6 @@ This facemask detector can classify among 3 categories:
 3. A person not wearing a mask
 
 # Link to dataset
-Download the dataset using this !(link)[].
+Download the dataset using this ![link]().
 
 After downloading the folder FMD_data, place the folder in the same directory as the code. For checking the structure of the data, please go through 'sample_data' from the repo. 
