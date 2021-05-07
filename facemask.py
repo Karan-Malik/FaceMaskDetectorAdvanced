@@ -55,7 +55,7 @@ model_saved=model.fit_generator(
         validation_data=test_set,
         )
 model.save('mymodel.h5',model_saved)
-'''
+
 
 #To test for individual images
 mymodel=load_model('mymodel.h5')
@@ -65,9 +65,9 @@ test_image=image.load_img(r'C:/Users/karan/Desktop/Datasets/new_mask/test/incorr
                           target_size=(150,150,3))
 test_image=image.img_to_array(test_image)
 test_image=np.expand_dims(test_image,axis=0)
-mymodel.predict_classes(test_image)[0]
-
-
+pred=mymodel.predict(test_image)[0]
+print(np.argmax(pred))
+'''
 # IMPLEMENTING LIVE DETECTION OF FACE MASK
 
 mymodel=load_model('mymodel.h5')
@@ -84,7 +84,8 @@ while cap.isOpened():
         test_image=image.load_img('temp.jpg',target_size=(150,150,3))
         test_image=image.img_to_array(test_image)
         test_image=np.expand_dims(test_image,axis=0)
-        pred=mymodel.predict_classes(test_image)[0]
+        pred=mymodel.predict(test_image)[0]
+        pred=np.argmax(pred)
         if pred==2:
             cv2.rectangle(img,(x,y),(x+w,y+h),(0,0,255),3)
             cv2.putText(img,'NO MASK',((x+w)//2,y+h+20),cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),3)
